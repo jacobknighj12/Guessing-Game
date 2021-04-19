@@ -5,12 +5,13 @@ questionArray = questionAndAnswerFile.readlines()
 questionAndAnswer = questionArray[index].split("|")
 question = questionAndAnswer[0].strip()
 answer = questionAndAnswer[1].strip()
+repeat = true
 playerInput = ""
 lives = 3
 score = 0
 
 puts "Welcome!"
-while lives >=1 and repeat == true
+while lives >=1 or repeat == true
   puts "Here is your hint: %s" % question
   playerInput = gets
 
@@ -37,19 +38,26 @@ while lives >=1 and repeat == true
           end
       end
     else
-      puts "failure"
+      puts "Incorrect"
       lives -= 1
       puts "lives left: %d" % lives
+
+      if lives == 0
+        puts "Play again?"
+        puts "y/n"
+        playerInput = gets
+          if playerInput.include? "n" then break
+          else
+            index = 0
+            questionAndAnswer = questionArray[index].split("|")
+            question = questionAndAnswer[0].strip()
+            answer = questionAndAnswer[1].strip()
+            lives = 3
+            end
+            end
     if lives >= 1 then puts "Try again!"
       puts "the word starts with a %s" % answer[0]
-
+        end
       end
     end
   end
-end
-
-
-
-
-#standard library (learn this specificly)(rubycore)(import shit or random numbers)
-# %d for in string stuff
